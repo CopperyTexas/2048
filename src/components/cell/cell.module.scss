@@ -1,3 +1,17 @@
-.cell{
-    
+.cell {
+	background-color: #444;
+	border-radius: 1vmin;
+	opacity: 0;
+	animation: cellAppearAnimation 0.5s ease-out forwards;
+}
+
+@keyframes cellAppearAnimation {
+	from {
+		transform: scale(0);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
 }

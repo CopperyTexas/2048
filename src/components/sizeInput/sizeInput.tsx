@@ -1,39 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react'
 
 interface GridSizeInputProps {
-    updateSettings: (newSettings: { gridSize: number }) => void;
+	updateSettings: (newSettings: { gridSize: number }) => void
 }
 
 const GridSizeInput: React.FC<GridSizeInputProps> = ({ updateSettings }) => {
-    const [inputValue, setInputValue] = useState('');
+	// Функция для обновления размера сетки
+	const setGridSize = (size: number) => {
+		updateSettings({ gridSize: size })
+	}
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
-    };
+	return (
+		<div>
+			<button onClick={() => setGridSize(4)}>Установить размер 4x4</button>
+			<button onClick={() => setGridSize(5)}>Установить размер 5x5</button>
+		</div>
+	)
+}
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        const gridSize = parseInt(inputValue, 10);
-        if (!isNaN(gridSize) && gridSize > 0) {
-            updateSettings({ gridSize });
-        } else {
-            alert("Пожалуйста, введите корректное положительное число.");
-        }
-    };
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="gridSize">Размер сетки: </label>
-            <input
-                type="number"
-                id="gridSize"
-                value={inputValue}
-                onChange={handleChange}
-                min="1"
-            />
-            <button type="submit">Обновить</button>
-        </form>
-    );
-};
-
-export default GridSizeInput;
+export default GridSizeInput

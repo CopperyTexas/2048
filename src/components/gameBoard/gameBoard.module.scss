@@ -3,14 +3,9 @@
 	--cell-gap: 2vmin;
 	position: relative;
 	display: grid;
-	grid-template-columns: repeat(4, var(--cell-size));
-	grid-template-rows: repeat(4, var(--cell-size));
-	gap: 2vmin;
 	border-radius: 1vmin;
-}
-.cell {
-	background-color: #444;
-	border-radius: 1vmin;
+	transition: grid-template-columns 0.5s ease-in-out,
+		grid-template-rows 0.5s ease-in-out, gap 0.5s ease-in-out;
 }
 .tile {
 	--y: 2;
@@ -31,10 +26,4 @@
 	color: #000;
 	transition: 100ms;
 	animation: show 200ms;
-}
-@keyframes show {
-	0% {
-		opacity: 0.5;
-		transform: scale(0);
-	}
 }

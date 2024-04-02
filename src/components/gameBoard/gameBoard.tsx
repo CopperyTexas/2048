@@ -1,28 +1,47 @@
-import React from 'react'
-import classes from './gameBoard.module.scss'
+import React, { useEffect, useState } from 'react'
 import Cell from '../cell/cell'
+import classes from './gameBoard.module.scss'
 
-const GRID_SIZE = 4;
-
-interface GameBoardProps{
-	gridSize: number;
+interface GameBoardProps {
+	gridSize: number
 }
 
-const GameBoard: React.FC<GameBoardProps> = ({gridSize}) => {
-	const cells: JSX.Element[] = [];
+const GameBoard: React.FC<GameBoardProps> = ({ gridSize }) => {
+	const [cellSize, setCellSize] = useState(100)
+	const [gapSize, setGapSize] = useState(5)
+	useEffect(() => {
+		const handleResize = () => {
+			const width = window.innerWidth
+			const newCellSize = Math.max(width / gridSize / 2, 20)
+			setCellSize(newCellSize)
+			const newGapSize = Math.max(newCellSize * 0.1, 5)
+			setGapSize(newGapSize)
+		}
+
+		handleResize()
+		window.addEventListener('resize', handleResize)
+		return () => window.removeEventListener('resize', handleResize)
+	}, [gridSize])
+
+	const cells: JSX.Element[] = []
 	for (let y = 0; y < gridSize; y++) {
 		for (let x = 0; x < gridSize; x++) {
-		  cells.push(<Cell key={`${x}-${y}`} x={x} y={y} />);
+			cells.push(<Cell key={`${gridSize}-${x}-${y}`} x={x} y={y} />)
 		}
-	  }
+	}
 
-	 // Inline стили для динамической сетки
-	 const gridStyle = {
-        gridTemplateColumns: `repeat(${gridSize}, var(--cell-size))`,
-        gridTemplateRows: `repeat(${gridSize}, var(--cell-size))`,
-    };
+	const gridStyle: React.CSSProperties = {
+		display: 'grid',
+		gridTemplateColumns: `repeat(${gridSize}, ${cellSize}px)`,
+		gridTemplateRows: `repeat(${gridSize}, ${cellSize}px)`,
+		gap: `${gapSize}px`,
+	}
 
-    return <div className={classes.game_board} style={gridStyle}>{cells}</div>;
+	return (
+		<div className={classes.game_board} style={gridStyle}>
+			{cells}
+		</div>
+	)
 }
 
 export default GameBoard
