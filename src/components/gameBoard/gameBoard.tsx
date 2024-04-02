@@ -5,20 +5,21 @@ import classes from './gameBoard.module.scss'
 
 interface GameBoardProps {
 	gridSize: number
-	startGame: boolean // Флаг для начала игры
+	startGame: boolean
 }
 
 interface TileData {
 	x: number
 	y: number
 	value: number
+	isNew?: boolean
 }
 
 const GameBoard: React.FC<GameBoardProps> = ({ gridSize, startGame }) => {
 	const [cellSize, setCellSize] = useState(100)
 	const [gapSize, setGapSize] = useState(5)
 	const [tiles, setTiles] = useState<TileData[]>([])
-	const [renderCounter, setRenderCounter] = useState(0) // Счётчик для ререндера Cell
+	const [renderCounter, setRenderCounter] = useState(0)
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -39,7 +40,6 @@ const GameBoard: React.FC<GameBoardProps> = ({ gridSize, startGame }) => {
 		return () => window.removeEventListener('resize', handleResize)
 	}, [gridSize])
 
-	// Функция для добавления новой плитки
 	const addRandomTile = () => {
 		setTiles(tilesCurrent => {
 			let freePositions = []
@@ -54,17 +54,19 @@ const GameBoard: React.FC<GameBoardProps> = ({ gridSize, startGame }) => {
 			if (freePositions.length > 0) {
 				const { x, y } =
 					freePositions[Math.floor(Math.random() * freePositions.length)]
-				return [...tilesCurrent, { x, y, value: Math.random() < 0.9 ? 2 : 4 }]
+				return [
+					...tilesCurrent,
+					{ x, y, value: Math.random() < 0.9 ? 2 : 4, isNew: true },
+				]
 			}
 			return tilesCurrent
 		})
 	}
 
-	// Эффект для начала игры и ресайза
 	useEffect(() => {
 		if (startGame) {
-			setTiles([]) // Очищаем поле от плиток
-			setRenderCounter(prev => prev + 1) // Увеличиваем счётчик для ререндера Cell с анимацией
+			setTiles([])
+			setRenderCounter(prev => prev + 1)
 			setTimeout(() => {
 				addRandomTile()
 				addRandomTile()
@@ -88,12 +90,13 @@ const GameBoard: React.FC<GameBoardProps> = ({ gridSize, startGame }) => {
 			})}
 			{tiles.map(tile => (
 				<Tile
-					key={`tile-${tile.x}-${tile.y}-${renderCounter}`} // Обновление ключа для Tile тоже, если нужно
+					key={`tile-${tile.x}-${tile.y}-${renderCounter}`}
 					value={tile.value}
 					x={tile.x}
 					y={tile.y}
 					cellSize={cellSize}
 					gapSize={gapSize}
+					isNew={tile.isNew}
 				/>
 			))}
 		</div>

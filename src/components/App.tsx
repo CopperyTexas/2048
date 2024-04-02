@@ -12,14 +12,20 @@ const App = () => {
 		setGridSize(newSettings.gridSize)
 		setIsGameStarted(true) // Начать игру
 	}
-
+	const resetGame = () => {
+		setIsGameStarted(false)
+		setTimeout(() => setIsGameStarted(true), 0)
+	}
 	return (
 		<div className={classes.app}>
 			<div className={classes.gameBoardArena}>
 				<GameBoard gridSize={gridSize} startGame={isGameStarted} />
 			</div>
 			<div className={classes.settingsPanelArena}>
-				<SettingsPanel updateSettings={updateSettingsAndStartGame} />
+				<SettingsPanel
+					updateSettings={updateSettingsAndStartGame}
+					resetGame={resetGame}
+				/>
 			</div>
 		</div>
 	)

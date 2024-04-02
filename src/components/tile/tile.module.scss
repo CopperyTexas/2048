@@ -4,12 +4,13 @@
 	justify-content: center;
 	align-items: center;
 	font-weight: bold;
+	font-size: 4vmin;
 	border-radius: 1vmin;
-	transition: background-color 0.3s, transform 0.3s;
+	transition: background-color 0.3s, transform 0.5s;
 
 	// Стили для новых плиток, возможно анимация появления
 	.newTile {
-		animation: pop 0.2s ease-in-out;
+		animation: pop 0.5s ease-in-out forwards;
 	}
 
 	// Стили для объединения плиток, возможно анимация слияния
@@ -18,11 +19,13 @@
 	}
 
 	@keyframes pop {
-		0% {
+		from {
 			transform: scale(0);
+			opacity: 0;
 		}
-		100% {
+		to {
 			transform: scale(1);
+			opacity: 1;
 		}
 	}
 
