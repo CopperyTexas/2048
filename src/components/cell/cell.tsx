@@ -9,7 +9,6 @@ interface CellProps {
 
 const Cell: React.FC<CellProps> = ({ x, y }) => {
 	const animationDelay = `${Math.random()}s`
-	const animationName = 'cellAnimation'
 
 	return (
 		<div

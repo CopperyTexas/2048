@@ -14,8 +14,12 @@ const App = () => {
 
 	return (
 		<div className={classes.app}>
-			<GameBoard gridSize={gridSize} />
-			<SettingsPanel updateSettings={updateSettings} />
+			<div className={classes.gameBoardArena}>
+				<GameBoard gridSize={gridSize} />
+			</div>
+			<div className={classes.settingsPanelArena}>
+				<SettingsPanel updateSettings={updateSettings} />
+			</div>
 		</div>
 	)
 }

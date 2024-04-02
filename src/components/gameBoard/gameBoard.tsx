@@ -11,8 +11,13 @@ const GameBoard: React.FC<GameBoardProps> = ({ gridSize }) => {
 	const [gapSize, setGapSize] = useState(5)
 	useEffect(() => {
 		const handleResize = () => {
-			const width = window.innerWidth
-			const newCellSize = Math.max(width / gridSize / 2, 20)
+			const maxWidth = 1600
+			const width = Math.min(window.innerWidth * 0.9, maxWidth)
+			const maxCellSize = 200
+			const newCellSize = Math.min(
+				Math.max(width / gridSize / 2, 20),
+				maxCellSize
+			)
 			setCellSize(newCellSize)
 			const newGapSize = Math.max(newCellSize * 0.1, 5)
 			setGapSize(newGapSize)
