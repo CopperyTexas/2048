@@ -7,22 +7,37 @@ interface TileProps {
 	y: number // y координата плитки на сетке
 	isNew?: boolean // является ли плитка новой
 	isMerged?: boolean // произошло ли объединение с другой плиткой
+	cellSize?: number
+	gapSize?: number
 }
 
-const Tile: React.FC<TileProps> = ({ value, x, y, isNew, isMerged }) => {
-	const positionStyle = {
-		transform: `translate(${x * 100}%, ${y * 100}%)`,
+const Tile: React.FC<TileProps> = ({
+	value,
+	x,
+	y,
+	isNew,
+	isMerged,
+	cellSize,
+	gapSize,
+}) => {
+	const tileStyle = {
+		width: cellSize,
+		height: cellSize,
+		transform: `translate(${x * (cellSize + gapSize)}px, ${
+			y * (cellSize + gapSize)
+		}px)`,
 	}
 
 	// Определение класса в зависимости от состояния плитки
-	const tileClass =
-		`${classes.tile} ` +
-		`${value ? ` ${classes[`tile-${value}`]}` : 'tile-empty'} ` +
-		`${isNew ? classes.newTile : ''} ` +
-		`${isMerged ? classes.mergedTile : ''}`
+	const tileClass = `
+    ${classes.tile} 
+    ${value ? classes[`tile-${value}`] : ''} 
+    ${isNew ? classes.newTile : ''} 
+    ${isMerged ? classes.mergedTile : ''}
+  `
 
 	return (
-		<div className={tileClass} style={positionStyle}>
+		<div className={tileClass} style={tileStyle}>
 			{value !== 0 && <span className={classes.tileValue}>{value}</span>}
 		</div>
 	)
