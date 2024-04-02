@@ -6,23 +6,3 @@
 	transition: grid-template-columns 0.5s ease-in-out,
 		grid-template-rows 0.5s ease-in-out, gap 0.5s ease-in-out;
 }
-.tile {
-	--y: 2;
-	--x: 1;
-	position: absolute;
-	top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)));
-	left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)));
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: var(--cell-size);
-	height: var(--cell-size);
-	border-radius: 1vmin;
-	font-family: 'Courier New', Courier, monospace;
-	font-size: 7.5vmin;
-	font-weight: bold;
-	background-color: #fff;
-	color: #000;
-	transition: 100ms;
-	animation: show 200ms;
-}

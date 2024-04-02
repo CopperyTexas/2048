@@ -1,9 +1,9 @@
 .tile {
+	position: absolute;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-weight: bold;
-	font-size: 7.5vmin;
 	border-radius: 1vmin;
 	transition: background-color 0.3s, transform 0.3s;
 
