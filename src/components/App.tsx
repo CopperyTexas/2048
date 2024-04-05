@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import classes from './App.module.scss'
-import GameBoard from './gameBoard/gameBoard'
+import GameBoard from './GameBoard/gameBoard'
 import SettingsPanel from './settingsPanel/settingsPanel'
 
 const App = () => {

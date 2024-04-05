@@ -1,4 +1,3 @@
-// Cell.tsx
 import React from 'react'
 import classes from './cell.module.scss'
 
@@ -7,22 +6,8 @@ interface CellProps {
 	y: number
 }
 
-const Cell: React.FC<CellProps> = ({ x, y }) => {
-	const animationDelay = `${Math.random()}s`
-
-	return (
-		<div
-			className={classes.cell}
-			style={{
-				animationDuration: '0.5s',
-				animationFillMode: 'forwards',
-				animationTimingFunction: 'ease-out',
-				animationDelay: animationDelay,
-			}}
-			data-x={x}
-			data-y={y}
-		></div>
-	)
+const Cell = ({ x, y }: CellProps) => {
+	return <div className={classes.cell} data-x={x} data-y={y}></div>
 }
 
 export default Cell

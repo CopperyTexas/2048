@@ -1,38 +1,28 @@
-import React, { useState } from 'react'
-import GridSizeInput from '../sizeInput/sizeInput' // Путь к компоненту GridSizeInput
+import React from 'react'
 
 interface SettingsPanelProps {
-	updateSettings: (newSettings: {
-		gridSize: number
-		startGame: boolean
-	}) => void
+	startGame: () => void
 	resetGame: () => void
 }
 
 const SettingsPanel: React.FC<SettingsPanelProps> = ({
-	updateSettings,
+	startGame,
 	resetGame,
 }) => {
-	const [gridSize, setGridSize] = useState<number | null>(null)
-
+	// Теперь функция handleStartGame просто вызывает startGame
 	const handleStartGame = () => {
-		if (gridSize) {
-			updateSettings({ gridSize, startGame: true })
-		} else {
-			alert('Пожалуйста, выберите размер игрового поля перед началом игры.')
-		}
+		startGame()
 	}
+
 	const handleResetGame = () => {
 		resetGame()
-		setGridSize(null)
 	}
 
 	return (
 		<div>
 			<h2>Настройки игры</h2>
-			<GridSizeInput updateSettings={({ gridSize }) => setGridSize(gridSize)} />
-			<button onClick={handleStartGame}>Начать игру</button>
-			<button onClick={handleResetGame}>Reset</button>
+			<button onClick={handleStartGame}>Старт</button>
+			<button onClick={handleResetGame}>Перезапуск</button>
 		</div>
 	)
 }

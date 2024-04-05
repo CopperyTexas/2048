@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import Cell from '../cell/cell'
-import Tile from '../tile/tile'
+import Cell from '../Cell/cell'
+import Tile from '../Tile/tile'
 import classes from './gameBoard.module.scss'
 
 interface GameBoardProps {
@@ -215,7 +215,6 @@ const GameBoard: React.FC<GameBoardProps> = ({ gridSize, startGame }) => {
 					y={tile.y}
 					cellSize={cellSize}
 					gapSize={gapSize}
-					isNew={tile.isNew}
 				/>
 			))}
 		</div>
