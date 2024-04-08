@@ -6,6 +6,9 @@ export class Tile {
 		this.tileElement.textContent = this.value
 		gridElement.append(this.tileElement)
 	}
+	removeFromDOM() {
+		this.tileElement.remove()
+	}
 	setXY(x, y) {
 		this.x = x
 		this.y = y
