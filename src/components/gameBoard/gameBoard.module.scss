@@ -1,8 +1,0 @@
-.game_board {
-	position: relative;
-	display: grid;
-	border-radius: 1vmin;
-	margin: 0;
-	transition: grid-template-columns 0.5s ease-in-out,
-		grid-template-rows 0.5s ease-in-out, gap 0.5s ease-in-out;
-}
