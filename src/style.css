@@ -4,14 +4,24 @@
 	padding: 0;
 }
 body {
-	background-color: #333;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+	background-color: #7a7373;
 }
-
+.main {
+	width: 100vw;
+	display: flex;
+	gap: 2vmin;
+}
+.game-container {
+	padding: 2vmin;
+}
 #game-board {
+	width: calc(4 * var(--cell-size) + 3 * var(--cell-gap));
+	height: calc(4 * var(--cell-size) + 3 * var(--cell-gap));
+	flex-grow: 2;
 	--cell-size: 20vmin;
 	--cell-gap: 2vmin;
 	position: relative;
@@ -20,6 +30,13 @@ body {
 	grid-template-rows: repeat(4, var(--cell-size));
 	gap: var(--cell-gap);
 	border-radius: 1vmin;
+	place-content: center;
+	margin: 0 auto;
+}
+
+#settings {
+	flex-grow: 1;
+	background-color: rgb(218, 176, 126);
 }
 .cell {
 	background-color: #444;
@@ -45,7 +62,28 @@ body {
 	transition: 100ms;
 	animation: show 200ms;
 }
+/* Затемнение фона */
+.backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000; /* Убедитесь, что backdrop находится поверх всего контента */
+}
 
+/* Стили всплывающего окна */
+.popup {
+	background-color: white;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	z-index: 1001; /* Popup должен быть поверх backdrop */
+}
 @keyframes show {
 	0% {
 		opacity: 0.5;
