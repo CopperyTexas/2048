@@ -1,12 +1,13 @@
 import { Grid } from './grid.js'
 import { Tile } from './tile.js'
 
-const gameBoard = document.getElementById('game-board')
+let gameBoard = document.getElementById('game-board')
 
-const grid = new Grid(gameBoard)
+let grid = new Grid(gameBoard)
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard))
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard))
 setupInputOnce()
+let score = 0 // Начальный счёт игры
 
 function setupInputOnce() {
 	window.addEventListener('keydown', handleInput, { once: true })
@@ -82,7 +83,9 @@ async function slideTiles(groupedCells) {
 
 	await Promise.all(promises)
 	grid.cells.forEach(cell => {
-		cell.hasTileForMerge() && cell.mergeTiles()
+		if (cell.hasTileForMerge()) {
+			cell.mergeTiles() // Этот вызов обновит счёт за счёт updateScore внутри mergeTiles
+		}
 	})
 }
 
@@ -151,31 +154,45 @@ function canMoveInGroup(group) {
 		return targetCell.canAccept(cell.linkedTile)
 	})
 }
+function restartGame() {
+	// Удаляем все текущие плитки с игрового поля
+	while (gameBoard.firstChild) {
+		gameBoard.removeChild(gameBoard.firstChild)
+	}
+
+	// Инициализируем новое игровое поле
+	grid = new Grid(gameBoard) // Теперь это допустимо, так как grid объявлен через let
+	grid.getRandomEmptyCell().linkTile(new Tile(gameBoard))
+	grid.getRandomEmptyCell().linkTile(new Tile(gameBoard))
+
+	// Перенастраиваем обработчик ввода, если это необходимо
+	setupInputOnce()
+}
+
 function showPopup() {
 	if (!document.querySelector('.backdrop')) {
-		// Создаём элемент backdrop
 		const backdrop = document.createElement('div')
 		backdrop.classList.add('backdrop')
 
-		// Добавляем к backdrop содержимое шаблона popup
 		const template = document
 			.getElementById('popup-template')
 			.content.cloneNode(true)
 		backdrop.appendChild(template)
 
-		// Добавляем backdrop в body
 		document.body.appendChild(backdrop)
 
-		// Обработчик клика по кнопке закрытия
-		document.getElementById('close').addEventListener('click', function () {
-			backdrop.remove() // Удаляем весь backdrop вместе с popup
+		backdrop.querySelector('#close').addEventListener('click', function () {
+			backdrop.remove()
 		})
 
-		// Обработчик для кнопки "Начать заново"
-		document.getElementById('restart').addEventListener('click', function () {
-			// Ваш код для перезапуска игры
-			backdrop.remove() // Не забудьте удалить backdrop
-			// Сюда добавьте вашу логику перезапуска
+		backdrop.querySelector('#restart').addEventListener('click', function () {
+			backdrop.remove()
+			restartGame()
 		})
 	}
 }
+export function updateScore(totalValue) {
+	score += totalValue // Увеличиваем счёт
+	document.getElementById('score').textContent = score // Обновляем отображение счёта на странице
+}
+window.updateScore = updateScore

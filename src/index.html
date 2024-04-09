@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./style.css" />
+		<script src="./script.js" type="module"></script>
+		<title>2048</title>
+	</head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./style.css">
-	<script src='./script.js' type='module'></script>
-	<title>2048</title>
-</head>
+	<body>
+		<div class="main">
+			<div class="game-container">
+				<div id="game-board"></div>
+			</div>
 
-<body>
-	<div class='main'>
-		<div class="game-container">
-			<div id='game-board'>
+			<div id="settings">
+				<h1>Настройки игры</h1>
+				<div id="score">0</div>
 			</div>
 		</div>
-
-		<div id='settings'>
-			<h1>Настройки игры</h1>
-		</div>
-	</div>
-	<template id="popup-template">
-		<div class="popup">
-			<p>Вы хотите начать заново?</p>
-			<button id="restart">Начать заново</button>
-			<button id="close">Закрыть</button>
-		</div>
-	</template>
-</body>
-
+		<template id="popup-template">
+			<div class="popup">
+				<p>Вы хотите начать заново?</p>
+				<button id="restart">Начать заново</button>
+				<button id="close">Закрыть</button>
+			</div>
+		</template>
+	</body>
 </html>

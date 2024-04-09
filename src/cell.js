@@ -41,10 +41,11 @@ export class Cell {
 	}
 
 	mergeTiles() {
-		this.linkedTile.setValue(
-			this.linkedTile.value + this.linkedTileForMerge.value
-		)
+		const totalValue = this.linkedTile.value + this.linkedTileForMerge.value
+		this.linkedTile.setValue(totalValue)
 		this.linkedTileForMerge.removeFromDOM()
 		this.unlinkTileForMerge()
+		console.log(totalValue)
+		updateScore(totalValue)
 	}
 }
