@@ -9,9 +9,14 @@ grid.getRandomEmptyCell().linkTile(new Tile(gameBoard))
 setupInputOnce()
 let score = 0 // Начальный счёт игры
 document.addEventListener('DOMContentLoaded', updateLeaderboard)
-
 function setupInputOnce() {
 	window.addEventListener('keydown', handleInput, { once: true })
+}
+// Добавление слушателя к кнопке "Начать заново" в настройках игры
+const settingsRestartButton = document.getElementById('settings-restart')
+if (settingsRestartButton) {
+	settingsRestartButton.addEventListener('click', restartGame)
+	score = 0
 }
 
 async function handleInput(event) {
@@ -85,9 +90,18 @@ async function slideTiles(groupedCells) {
 	await Promise.all(promises)
 	grid.cells.forEach(cell => {
 		if (cell.hasTileForMerge()) {
-			cell.mergeTiles() // Этот вызов обновит счёт за счёт updateScore внутри mergeTiles
+			cell.mergeTiles()
 		}
 	})
+	checkWinCondition()
+}
+function checkWinCondition() {
+	const hasWon = grid.cells.some(
+		cell => cell.linkedTile && cell.linkedTile.value === 2048
+	)
+	if (hasWon) {
+		showPopup(true) // Передаем true, чтобы показать сообщение о победе
+	}
 }
 
 function slideTilesInGroup(group, promises) {
@@ -182,11 +196,11 @@ function showPopup(win) {
 	}
 
 	const message = win
-		? 'Поздравляем! Вы достигли 2048!'
+		? `Поздравляем! Вы достигли 2048! ваш счет :`
 		: 'Игра окончена! Ваш счёт: '
 	document.getElementById('popup-message').innerHTML =
 		message + `<span id="final-score">${score}</span>`
-
+	// Устанавливаем обработчики событий
 	document.getElementById('save-score').addEventListener('click', saveScore)
 	document.getElementById('restart').addEventListener('click', function () {
 		backdrop.remove()
@@ -195,12 +209,11 @@ function showPopup(win) {
 	document.getElementById('close').addEventListener('click', function () {
 		backdrop.remove()
 	})
-
-	// Обновляем счёт в окне, если это не победа
 	if (!win) {
 		document.getElementById('final-score').textContent = score
 	}
 }
+
 export function updateScore(totalValue) {
 	score += totalValue // Увеличиваем счёт
 	document.getElementById('score').textContent = score // Обновляем отображение счёта на странице
@@ -258,16 +271,4 @@ function updateLeaderboard() {
 		li.textContent = `${score.name}: ${score.score}`
 		scoresList.appendChild(li)
 	})
-}
-function checkGameOver() {
-	// Проверка на наличие плитки 2048
-	const win = grid.cells.some(
-		cell => cell.linkedTile && cell.linkedTile.value === 2048
-	)
-	if (win) {
-		showPopup(true)
-	} else if (!canMove()) {
-		// Предполагается, что функция canMove() уже реализована
-		showPopup(false)
-	}
 }
