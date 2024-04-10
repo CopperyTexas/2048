@@ -8,6 +8,7 @@ grid.getRandomEmptyCell().linkTile(new Tile(gameBoard))
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard))
 setupInputOnce()
 let score = 0 // Начальный счёт игры
+document.addEventListener('DOMContentLoaded', updateLeaderboard)
 
 function setupInputOnce() {
 	window.addEventListener('keydown', handleInput, { once: true })
@@ -164,31 +165,40 @@ function restartGame() {
 	grid = new Grid(gameBoard) // Теперь это допустимо, так как grid объявлен через let
 	grid.getRandomEmptyCell().linkTile(new Tile(gameBoard))
 	grid.getRandomEmptyCell().linkTile(new Tile(gameBoard))
-
 	// Перенастраиваем обработчик ввода, если это необходимо
 	setupInputOnce()
 }
 
-function showPopup() {
+function showPopup(win) {
+	const backdrop =
+		document.querySelector('.backdrop') || document.createElement('div')
 	if (!document.querySelector('.backdrop')) {
-		const backdrop = document.createElement('div')
 		backdrop.classList.add('backdrop')
-
 		const template = document
 			.getElementById('popup-template')
 			.content.cloneNode(true)
 		backdrop.appendChild(template)
-
 		document.body.appendChild(backdrop)
+	}
 
-		backdrop.querySelector('#close').addEventListener('click', function () {
-			backdrop.remove()
-		})
+	const message = win
+		? 'Поздравляем! Вы достигли 2048!'
+		: 'Игра окончена! Ваш счёт: '
+	document.getElementById('popup-message').innerHTML =
+		message + `<span id="final-score">${score}</span>`
 
-		backdrop.querySelector('#restart').addEventListener('click', function () {
-			backdrop.remove()
-			restartGame()
-		})
+	document.getElementById('save-score').addEventListener('click', saveScore)
+	document.getElementById('restart').addEventListener('click', function () {
+		backdrop.remove()
+		restartGame()
+	})
+	document.getElementById('close').addEventListener('click', function () {
+		backdrop.remove()
+	})
+
+	// Обновляем счёт в окне, если это не победа
+	if (!win) {
+		document.getElementById('final-score').textContent = score
 	}
 }
 export function updateScore(totalValue) {
@@ -196,3 +206,68 @@ export function updateScore(totalValue) {
 	document.getElementById('score').textContent = score // Обновляем отображение счёта на странице
 }
 window.updateScore = updateScore
+
+function saveScore() {
+	const playerName = document.getElementById('player-name').value.trim()
+	const finalScore = score // score - ваша текущая переменная счёта
+
+	if (!playerName) {
+		alert('Пожалуйста, введите ваше имя.')
+		return
+	}
+
+	// Получаем текущие результаты из localStorage или инициализируем пустой массив
+	const scores = JSON.parse(localStorage.getItem('scores')) || []
+	const existingPlayer = scores.find(s => s.name === playerName)
+	// Добавляем новый результат
+	if (existingPlayer) {
+		// Если новый счёт выше, обновляем его
+		if (finalScore > existingPlayer.score) {
+			existingPlayer.score = finalScore
+		}
+	} else {
+		// Добавляем нового игрока, если его имя не найдено
+		scores.push({ name: playerName, score: finalScore })
+	}
+	// Сохраняем обновлённый массив обратно в localStorage
+	localStorage.setItem('scores', JSON.stringify(scores))
+
+	// Опционально: обновляем отображение таблицы лидеров
+	updateLeaderboard()
+	// Закрываем всплывающее окно
+	const backdrop = document.querySelector('.backdrop')
+	if (backdrop) {
+		backdrop.remove() // Удаление всплывающего окна из DOM
+		// или используйте backdrop.style.display = 'none'; для скрытия
+	}
+}
+
+function updateLeaderboard() {
+	const scoresList = document.getElementById('scores-list')
+	const scores = JSON.parse(localStorage.getItem('scores')) || []
+
+	// Сортировка результатов по убыванию счёта
+	scores.sort((a, b) => b.score - a.score)
+
+	// Очищаем текущий список
+	scoresList.innerHTML = ''
+
+	// Генерируем элементы списка для каждого результата
+	scores.forEach(score => {
+		const li = document.createElement('li')
+		li.textContent = `${score.name}: ${score.score}`
+		scoresList.appendChild(li)
+	})
+}
+function checkGameOver() {
+	// Проверка на наличие плитки 2048
+	const win = grid.cells.some(
+		cell => cell.linkedTile && cell.linkedTile.value === 2048
+	)
+	if (win) {
+		showPopup(true)
+	} else if (!canMove()) {
+		// Предполагается, что функция canMove() уже реализована
+		showPopup(false)
+	}
+}

@@ -45,7 +45,7 @@ export class Cell {
 		this.linkedTile.setValue(totalValue)
 		this.linkedTileForMerge.removeFromDOM()
 		this.unlinkTileForMerge()
-		console.log(totalValue)
+		console.log(score)
 		updateScore(totalValue)
 	}
 }

@@ -1,30 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./style.css" />
-		<script src="./script.js" type="module"></script>
-		<title>2048</title>
-	</head>
 
-	<body>
-		<div class="main">
-			<div class="game-container">
-				<div id="game-board"></div>
-			</div>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="./style.css" />
+	<script src="./script.js" type="module"></script>
+	<title>2048</title>
+</head>
 
-			<div id="settings">
-				<h1>Настройки игры</h1>
-				<div id="score">0</div>
+<body>
+	<div class="main">
+		<div class="game-container">
+			<div id="game-board"></div>
+		</div>
+
+		<div id="settings">
+			<h1>Настройки игры</h1>
+			<div id="score">0</div>
+			<div id="leaderboard">
+				<h2>Таблица лидеров</h2>
+				<ul id="scores-list"></ul>
 			</div>
 		</div>
-		<template id="popup-template">
-			<div class="popup">
-				<p>Вы хотите начать заново?</p>
-				<button id="restart">Начать заново</button>
-				<button id="close">Закрыть</button>
-			</div>
-		</template>
-	</body>
+	</div>
+	<template id="popup-template">
+		<div class="popup">
+			<p id='popup-message'>Конец игры</p>
+			<p>Вы хотите начать заново?</p>
+			<input type="text" id="player-name" placeholder="Введите ваше имя">
+			<button id="save-score">Сохранить результат</button>
+			<button id="restart">Начать заново</button>
+			<button id="close">Закрыть</button>
+			<p>Ваш счет : <span id='final-score'>0</span> </p>
+		</div>
+	</template>
+</body>
+
 </html>
