@@ -272,6 +272,7 @@ function showPopup(win) {
 		document.getElementById('final-score').textContent = score
 	}
 }
+function showConfirmModal() {}
 
 // Функция для обновления счёта игры
 export function updateScore(totalValue, reset = false) {
@@ -350,9 +351,10 @@ function clearStorage() {
 	const clearButton = document.getElementById('clearLocalStorageBtn')
 	if (clearButton) {
 		clearButton.addEventListener('click', function () {
-			localStorage.clear() // Очищаем localStorage
-			updateLeaderboard() // Обновляем таблицу лидеров на странице
-			alert('LocalStorage has been cleared.') // Уведомляем пользователя об очистке
+			showConfirmationModal()
+			// localStorage.clear() // Очищаем localStorage
+			// updateLeaderboard() // Обновляем таблицу лидеров на странице
+			// // alert('LocalStorage has been cleared.') // Уведомляем пользователя об очистке
 		})
 	}
 }
