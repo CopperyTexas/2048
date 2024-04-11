@@ -15,8 +15,10 @@ function setupInputOnce() {
 // Добавление слушателя к кнопке "Начать заново" в настройках игры
 const settingsRestartButton = document.getElementById('settings-restart')
 if (settingsRestartButton) {
-	settingsRestartButton.addEventListener('click', restartGame)
-	score = 0
+	settingsRestartButton.addEventListener('click', function () {
+		restartGame()
+		resetScore()
+	})
 }
 
 async function handleInput(event) {
@@ -174,12 +176,10 @@ function restartGame() {
 	while (gameBoard.firstChild) {
 		gameBoard.removeChild(gameBoard.firstChild)
 	}
-
 	// Инициализируем новое игровое поле
-	grid = new Grid(gameBoard) // Теперь это допустимо, так как grid объявлен через let
+	grid = new Grid(gameBoard)
 	grid.getRandomEmptyCell().linkTile(new Tile(gameBoard))
 	grid.getRandomEmptyCell().linkTile(new Tile(gameBoard))
-	// Перенастраиваем обработчик ввода, если это необходимо
 	setupInputOnce()
 }
 
@@ -272,3 +272,24 @@ function updateLeaderboard() {
 		scoresList.appendChild(li)
 	})
 }
+function resetScore() {
+	// Обнуляем счет
+	score = 0
+	// Обновляем отображение счета на странице
+	document.getElementById('score').textContent = score
+}
+
+function clearStorage() {
+	document
+		.getElementById('clearLocalStorageBtn')
+		.addEventListener('click', function () {
+			// Очистить localStorage
+			localStorage.clear()
+			updateLeaderboard()
+			// Оповестить пользователя об очистке
+			alert('LocalStorage has been cleared.')
+		})
+}
+window.addEventListener('load', function () {
+	clearStorage()
+})
