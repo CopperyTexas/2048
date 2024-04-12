@@ -352,9 +352,6 @@ function clearStorage() {
 	if (clearButton) {
 		clearButton.addEventListener('click', function () {
 			showConfirmationModal()
-			// localStorage.clear() // Очищаем localStorage
-			// updateLeaderboard() // Обновляем таблицу лидеров на странице
-			// // alert('LocalStorage has been cleared.') // Уведомляем пользователя об очистке
 		})
 	}
 }
@@ -363,3 +360,33 @@ function clearStorage() {
 window.addEventListener('load', function () {
 	clearStorage() // Вызов функции clearStorage при полной загрузке страницы
 })
+function showConfirmationModal() {
+	// Поиск существующего фона или создание нового
+	let backdrop = document.querySelector('.backdrop')
+	if (!backdrop) {
+		backdrop = document.createElement('div')
+		backdrop.classList.add('backdrop')
+		// Клонирование и добавление шаблона всплывающего окна в документ
+		const template = document
+			.getElementById('modal-template')
+			.content.cloneNode(true)
+		backdrop.appendChild(template)
+		document.body.appendChild(backdrop)
+
+		// Установка обработчика для кнопки подтверждения
+		const confirmButton = backdrop.querySelector('#confirmButton')
+		confirmButton.addEventListener('click', function () {
+			// Логика очистки, которая должна выполниться при подтверждении
+			localStorage.clear() // Очистка localStorage
+			updateLeaderboard() // Обновление таблицы лидеров
+			backdrop.remove() // Удаление модального окна из DOM
+			alert('Таблица лидеров очищена.') // Опционально, показываем уведомление
+		})
+
+		// Установка обработчика для кнопки отмены
+		const cancelButton = backdrop.querySelector('#cancelButton')
+		cancelButton.addEventListener('click', function () {
+			backdrop.remove() // Удаление модального окна из DOM
+		})
+	}
+}

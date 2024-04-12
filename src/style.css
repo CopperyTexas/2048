@@ -13,15 +13,16 @@ body {
 .main {
 	width: 100vw;
 	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
 }
 .game-container {
 	padding: 2vmin;
-	flex-grow: 3;
 }
 #game-board {
 	width: calc(4 * var(--cell-size) + 3 * var(--cell-gap));
 	height: calc(4 * var(--cell-size) + 3 * var(--cell-gap));
-	--cell-size: 20vmin;
+	--cell-size: clamp(100px, 16.66vw, 20vmin);
 	--cell-gap: 1vmin;
 	position: relative;
 	display: grid;
@@ -34,7 +35,7 @@ body {
 }
 
 #settings {
-	flex-grow: 2;
+	width: 40%;
 	background-color: rgb(218, 176, 126);
 }
 .cell {
@@ -90,9 +91,10 @@ body {
 	}
 }
 .modal {
+	position: absolute;
 	background-color: white;
 	padding: 20px;
 	border-radius: 5px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	z-index: 1001; /* Popup должен быть поверх backdrop */
+	border: 1px solid #ccc;
+	z-index: 1000; /* Убедитесь, что модальное окно находится поверх других элементов */
 }
