@@ -31,9 +31,12 @@ if (settingsRestartButton) {
 		resetScore()
 	})
 }
-
 // Обработка нажатий клавиш и выполнение соответствующих действий.
 async function handleInput(event) {
+	// Проверяем, является ли нажатая клавиша одной из стрелок
+	if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+		event.preventDefault() // Отменяем стандартное действие прокрутки страницы
+	}
 	switch (event.key) {
 		case 'ArrowUp':
 			if (!canMoveUp()) {
@@ -272,7 +275,6 @@ function showPopup(win) {
 		document.getElementById('final-score').textContent = score
 	}
 }
-function showConfirmModal() {}
 
 // Функция для обновления счёта игры
 export function updateScore(totalValue, reset = false) {
@@ -390,3 +392,26 @@ function showConfirmationModal() {
 		})
 	}
 }
+document.addEventListener('DOMContentLoaded', () => {
+	const numbers = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]
+	const backgroundArea = document.querySelector('body') // Предполагаем, что фон будет на всем body
+
+	for (let i = 0; i < 50; i++) {
+		// Создаем 30 чисел
+		const num = document.createElement('div')
+		num.textContent = numbers[Math.floor(Math.random() * numbers.length)]
+		num.classList.add('number-float')
+
+		// Назначаем случайное начальное положение
+		num.style.left = `${Math.random() * window.innerWidth}px`
+		num.style.top = `${Math.random() * window.innerHeight}px`
+
+		// Случайные конечные точки для анимации
+		const moveX = Math.random() * 400 - 200 // Смещение от -100 до 100px по горизонтали
+		const moveY = Math.random() * 400 - 200 // Смещение от -100 до 100px по вертикали
+		num.style.setProperty('--move-x', `${moveX}px`)
+		num.style.setProperty('--move-y', `${moveY}px`)
+
+		backgroundArea.appendChild(num)
+	}
+})
