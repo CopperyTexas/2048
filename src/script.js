@@ -332,11 +332,14 @@ function updateLeaderboard() {
 	// Сортируем результаты по убыванию счёта
 	scores.sort((a, b) => b.score - a.score)
 
+	// Ограничиваем количество результатов до 15
+	const topScores = scores.slice(0, 15)
+
 	// Очищаем текущий список перед добавлением новых элементов
 	scoresList.innerHTML = ''
 
 	// Добавляем результаты в список
-	scores.forEach(score => {
+	topScores.forEach(score => {
 		const li = document.createElement('li')
 		li.textContent = `${score.name}: ${score.score}`
 		scoresList.appendChild(li)

@@ -70,7 +70,7 @@ body {
 				list-style-type: none;
 				li {
 					display: inline-block;
-					margin: 20px;
+					margin: 15px;
 				}
 			}
 
@@ -81,6 +81,17 @@ body {
 				transform: translateX(-50%) translateY(-50%);
 				padding: 0 10px;
 				background-color: #7a7373;
+			}
+			.button_theme {
+				width: max-content;
+				padding: 10px;
+				border-radius: 1vmin;
+				border: none;
+				outline: none;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				cursor: pointer;
 			}
 		}
 	}
