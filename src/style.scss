@@ -92,6 +92,65 @@ body {
 				text-decoration: none;
 				display: inline-block;
 				cursor: pointer;
+				transition: 1s;
+				&.dark {
+					background-color: black;
+					color: white;
+					&:hover {
+						background-color: white;
+						color: black;
+					}
+				}
+				&.light {
+					background-color: white;
+					color: black;
+					&:hover {
+						background-color: black;
+						color: white;
+					}
+				}
+				&.rainbow {
+					position: relative;
+					padding: 10px 20px;
+					border: none;
+					background-image: linear-gradient(to right, red, blue);
+					color: black;
+					font-size: 16px;
+					cursor: pointer;
+					outline: none;
+					border-radius: 5px;
+					overflow: hidden; // Ограничиваем видимость внутри кнопки
+					transition: background-color 0.3s; // Плавный переход фона
+					&::before {
+						content: attr(data-text); // Используем атрибут data-text для текста
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						white-space: nowrap;
+						overflow: hidden;
+						color: transparent;
+						background-image: linear-gradient(to right, red, blue);
+						-webkit-background-clip: text;
+						background-clip: text;
+						-webkit-text-fill-color: transparent;
+						text-align: center;
+						padding: 10px 20px;
+						font-size: 16px;
+						pointer-events: none; // Игнорируем события мыши на псевдоэлементе
+						opacity: 0;
+						transition: opacity 0.3s;
+					}
+
+					&:hover {
+						background-color: black;
+
+						&::before {
+							opacity: 1;
+						}
+					}
+				}
 			}
 		}
 	}

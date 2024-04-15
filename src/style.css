@@ -89,6 +89,63 @@ body {
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
+  transition: 1s;
+}
+.main #settings .themes .button_theme.dark {
+  background-color: black;
+  color: white;
+}
+.main #settings .themes .button_theme.dark:hover {
+  background-color: white;
+  color: black;
+}
+.main #settings .themes .button_theme.light {
+  background-color: white;
+  color: black;
+}
+.main #settings .themes .button_theme.light:hover {
+  background-color: black;
+  color: white;
+}
+.main #settings .themes .button_theme.rainbow {
+  position: relative;
+  padding: 10px 20px;
+  border: none;
+  background-image: linear-gradient(to right, red, blue);
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: background-color 0.3s;
+}
+.main #settings .themes .button_theme.rainbow::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: transparent;
+  background-image: linear-gradient(to right, red, blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.main #settings .themes .button_theme.rainbow:hover {
+  background-color: black;
+}
+.main #settings .themes .button_theme.rainbow:hover::before {
+  opacity: 1;
 }
 
 .cell {
