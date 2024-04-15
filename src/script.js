@@ -292,6 +292,7 @@ function saveScore() {
 	const playerName = document.getElementById('player-name').value.trim() // Получение имени игрока
 	const finalScore = score // Текущий счёт
 
+	// Проверяем, что имя введено
 	if (!playerName) {
 		alert('Пожалуйста, введите ваше имя.') // Предупреждение, если имя не введено
 		return
@@ -394,24 +395,24 @@ function showConfirmationModal() {
 }
 document.addEventListener('DOMContentLoaded', () => {
 	const numbers = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]
-	const backgroundArea = document.querySelector('body') // Предполагаем, что фон будет на всем body
+	const backgroundArea = document.querySelector('.main')
 
-	for (let i = 0; i < 50; i++) {
-		// Создаем 30 чисел
-		const num = document.createElement('div')
-		num.textContent = numbers[Math.floor(Math.random() * numbers.length)]
-		num.classList.add('number-float')
+	function createRaindrops() {
+		for (let i = 0; i < 15; i++) {
+			// Создаем 50 капель
+			const num = document.createElement('div')
+			num.textContent = numbers[Math.floor(Math.random() * numbers.length)]
+			num.classList.add('number-raindrop')
 
-		// Назначаем случайное начальное положение
-		num.style.left = `${Math.random() * window.innerWidth}px`
-		num.style.top = `${Math.random() * window.innerHeight}px`
+			const xPos = Math.random() * backgroundArea.clientWidth
+			num.style.left = `${xPos}px`
 
-		// Случайные конечные точки для анимации
-		const moveX = Math.random() * 400 - 200 // Смещение от -100 до 100px по горизонтали
-		const moveY = Math.random() * 400 - 200 // Смещение от -100 до 100px по вертикали
-		num.style.setProperty('--move-x', `${moveX}px`)
-		num.style.setProperty('--move-y', `${moveY}px`)
+			const animationDuration = Math.random() * 8 + 8 // Продолжительность анимации от 3 до 8 секунд
+			num.style.animation = `raindrop ${animationDuration}s linear infinite`
 
-		backgroundArea.appendChild(num)
+			backgroundArea.appendChild(num)
+		}
 	}
+
+	createRaindrops()
 })

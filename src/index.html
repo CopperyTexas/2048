@@ -18,9 +18,19 @@
 
 		<div id="settings">
 			<h1>Настройки игры</h1>
+			<div class="themes">
+				<h2>Темы</h2>
+				<ul>
+					<li><button>Dark</button></li>
+					<li><button>Light</button></li>
+					<li><button>Rainbow</button></li>
+				</ul>
+			</div>
 			<button id='clearLocalStorageBtn'>Clear</button>
 			<button id="settings-restart">Начать заново</button>
-			<div id="score">0</div>
+			<div id="score-container">
+				Score: <span id="score">0</span>
+			</div>
 			<div id="leaderboard">
 				<h2>Таблица лидеров</h2>
 				<ul id="scores-list"></ul>
@@ -31,7 +41,7 @@
 		<div class="popup">
 			<p id="popup-message">Конец игры</p>
 			<p>Вы хотите начать заново?</p>
-			<input type="text" id="player-name" placeholder="Введите ваше имя" />
+			<input type="text" id="player-name" placeholder="Введите ваше имя  (max 10 символов)" maxlength='10' />
 			<button id="save-score">Сохранить результат</button>
 			<button id="restart">Начать заново</button>
 			<button id="close">Закрыть</button>
