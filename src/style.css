@@ -107,46 +107,6 @@ body {
   background-color: black;
   color: white;
 }
-.main #settings .themes .button_theme.rainbow {
-  position: relative;
-  padding: 10px 20px;
-  border: none;
-  background-image: linear-gradient(to right, red, blue);
-  color: black;
-  font-size: 16px;
-  cursor: pointer;
-  outline: none;
-  border-radius: 5px;
-  overflow: hidden;
-  transition: background-color 0.3s;
-}
-.main #settings .themes .button_theme.rainbow::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  color: transparent;
-  background-image: linear-gradient(to right, red, blue);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-align: center;
-  padding: 10px 20px;
-  font-size: 16px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.main #settings .themes .button_theme.rainbow:hover {
-  background-color: black;
-}
-.main #settings .themes .button_theme.rainbow:hover::before {
-  opacity: 1;
-}
 
 .cell {
   background-color: #444;
@@ -240,7 +200,7 @@ body {
   overflow: hidden;
   animation: FadeIn 3.1s ease-out;
   user-select: none;
-  background-color: rgb(236, 178, 89);
+  background-color: rgb(117, 205, 227);
 }
 @keyframes FadeIn {
   from {
@@ -267,7 +227,7 @@ body {
   }
 }
 #Clouds .Cloud {
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="%23ffffff"><path d="M50,40a10,10,0,0,1-10,10H24A14,14,0,0,1,10,36c0-.34.1-.67.12-1A10,10,0,0,1,10,20a9.77,9.77,0,0,1,4-.84A12,12,0,0,1,42,12a11.93,11.93,0,0,1,8,19.22A9.82,9.82,0,0,1,50,40Z"/></svg>');
+  background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 371.62 371.62'%3E%3Cpath fill='white' d='M62.513,153.087c-0.009-0.525-0.02-1.049-0.02-1.575c0-50.155,40.659-90.814,90.814-90.814 c43.222,0,79.388,30.196,88.562,70.643c8.555-4.789,18.409-7.531,28.91-7.531c32.766,0,59.328,26.562,59.328,59.328 c0,1.339-0.06,2.664-0.148,3.981c24.325,9.03,41.661,32.444,41.661,59.911c0,35.286-28.605,63.892-63.892,63.892H79.865 C35.757,310.921,0,275.164,0,231.056C0,192.907,26.749,161.011,62.513,153.087z'/%3E%3C/svg%3E");
   width: 100%;
   background-repeat: no-repeat;
   background-size: auto 100%;
@@ -285,7 +245,7 @@ body {
   z-index: 3;
 }
 #Clouds .Cloud .Background {
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="%23ffffff"><path d="M50,40a10,10,0,0,1-10,10H24A14,14,0,0,1,10,36c0-.34.1-.67.12-1A10,10,0,0,1,10,20a9.77,9.77,0,0,1,4-.84A12,12,0,0,1,42,12a11.93,11.93,0,0,1,8,19.22A9.82,9.82,0,0,1,50,40Z"/></svg>');
+  background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 371.62 371.62'%3E%3Cpath fill='%231EA6C6' d='M62.513,153.087c-0.009-0.525-0.02-1.049-0.02-1.575c0-50.155,40.659-90.814,90.814-90.814 c43.222,0,79.388,30.196,88.562,70.643c8.555-4.789,18.409-7.531,28.91-7.531c32.766,0,59.328,26.562,59.328,59.328 c0,1.339-0.06,2.664-0.148,3.981c24.325,9.03,41.661,32.444,41.661,59.911c0,35.286-28.605,63.892-63.892,63.892H79.865 C35.757,310.921,0,275.164,0,231.056C0,192.907,26.749,161.011,62.513,153.087z'/%3E%3C/svg%3E");
   height: 9.0909090909%;
   min-height: 8px;
   animation-duration: 204s;

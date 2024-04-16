@@ -396,29 +396,6 @@ function showConfirmationModal() {
 		})
 	}
 }
-// document.addEventListener('DOMContentLoaded', () => {
-// 	const numbers = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]
-// 	const backgroundArea = document.querySelector('.main')
-
-// 	function createRaindrops() {
-// 		for (let i = 0; i < 15; i++) {
-// 			// Создаем 50 капель
-// 			const num = document.createElement('div')
-// 			num.textContent = numbers[Math.floor(Math.random() * numbers.length)]
-// 			num.classList.add('number-raindrop')
-
-// 			const xPos = Math.random() * backgroundArea.clientWidth
-// 			num.style.left = `${xPos}px`
-
-// 			const animationDuration = Math.random() * 8 + 8 // Продолжительность анимации от 3 до 8 секунд
-// 			num.style.animation = `raindrop ${animationDuration}s linear infinite`
-
-// 			backgroundArea.appendChild(num)
-// 		}
-// 	}
-
-// 	createRaindrops()
-// })
 
 document.addEventListener('DOMContentLoaded', function () {
 	const cloudsContainer = document.getElementById('Clouds')
