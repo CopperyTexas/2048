@@ -211,8 +211,9 @@ $height: 10%;
 		}
 	}
 	.Cloud {
-		background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 371.62 371.62'%3E%3Cpath fill='white' d='M62.513,153.087c-0.009-0.525-0.02-1.049-0.02-1.575c0-50.155,40.659-90.814,90.814-90.814 c43.222,0,79.388,30.196,88.562,70.643c8.555-4.789,18.409-7.531,28.91-7.531c32.766,0,59.328,26.562,59.328,59.328 c0,1.339-0.06,2.664-0.148,3.981c24.325,9.03,41.661,32.444,41.661,59.911c0,35.286-28.605,63.892-63.892,63.892H79.865 C35.757,310.921,0,275.164,0,231.056C0,192.907,26.749,161.011,62.513,153.087z'/%3E%3C/svg%3E");
-
+		pointer-events: none; /* Облака не будут реагировать на события мыши */
+		position: absolute;
+		background-image: url('./images/cloud.svg');
 		width: 100%;
 		background-repeat: no-repeat;
 		background-size: auto 100%;
@@ -229,8 +230,7 @@ $height: 10%;
 			z-index: 4;
 		}
 		.Background {
-			background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 371.62 371.62'%3E%3Cpath fill='%231EA6C6' d='M62.513,153.087c-0.009-0.525-0.02-1.049-0.02-1.575c0-50.155,40.659-90.814,90.814-90.814 c43.222,0,79.388,30.196,88.562,70.643c8.555-4.789,18.409-7.531,28.91-7.531c32.766,0,59.328,26.562,59.328,59.328 c0,1.339-0.06,2.664-0.148,3.981c24.325,9.03,41.661,32.444,41.661,59.911c0,35.286-28.605,63.892-63.892,63.892H79.865 C35.757,310.921,0,275.164,0,231.056C0,192.907,26.749,161.011,62.513,153.087z'/%3E%3C/svg%3E");
-
+			background-image: url('./images/cloud.svg');
 			height: $height / 1.1;
 			min-height: 8px;
 			animation-duration: $duration * 1.7;
@@ -262,9 +262,21 @@ $height: 10%;
 	// Инициализация миксина с начальными значениями
 	@include cloud-loop(-($duration / 6.5), 10);
 }
-.sun {
+#sun-container {
+	transition: transform 0.3s ease;
 	position: absolute;
 	top: 0%;
-	left: 77%;
-	z-index: 2;
+	left: 75%;
+}
+.sun-interaction-area {
+	position: absolute;
+	top: 49%;
+	left: 50%;
+	width: 90px;
+	height: 90px;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0);
+	border: 2px solid red;
+	cursor: pointer;
 }

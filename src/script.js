@@ -407,3 +407,21 @@ document.addEventListener('DOMContentLoaded', function () {
 		cloudsContainer.appendChild(cloud)
 	}
 })
+fetch('./images/sun.svg')
+	.then(response => response.text())
+	.then(svg => {
+		const container = document.getElementById('sun-container')
+		container.innerHTML = svg
+
+		// Создание и стилизация внутреннего контейнера для интеракции
+		const interactionArea = document.createElement('div')
+		interactionArea.classList.add('sun-interaction-area')
+
+		// Добавление обработчиков событий
+		interactionArea.addEventListener('click', () => {
+			document.body.classList.toggle('dark-theme')
+		})
+
+		// Добавление интерактивного элемента в контейнер, не в SVG
+		container.appendChild(interactionArea)
+	})
