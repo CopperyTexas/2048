@@ -5,12 +5,28 @@
   padding: 0;
 }
 
+:root {
+  --color-text: #353430;
+  --color-border: black;
+  --background-cloud: url("./images/cloud-light.svg");
+  --cell-background: #444;
+  --cloud-bg: rgb(117, 205, 227);
+}
+
+.dark-theme {
+  --color-text: white;
+  --color-border: white;
+  --background-cloud: url("./images/cloud-dark.svg");
+  --cloud-bg: rgb(44, 62, 80);
+  --cell-background: #cccaca;
+}
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #7a7373;
+  color: var(--color-text);
   font-family: "Courier New", Courier, monospace;
 }
 
@@ -47,7 +63,7 @@ body {
   flex-direction: column;
   height: 60%;
   width: 40%;
-  border: 2px solid black;
+  border: 2px solid var(--color-border);
   border-radius: 1vmin;
   padding: 10px;
   margin: 10px;
@@ -57,54 +73,9 @@ body {
   font-size: 30px;
   margin: 0 auto;
 }
-.main #settings .themes {
-  display: flex;
-  justify-content: space-around;
-  position: relative;
-  margin-top: 20px;
-  border: 2px solid black;
-  border-radius: 1vmin;
-  text-align: center;
-}
-.main #settings .themes ul {
-  padding: 0;
-  list-style-type: none;
-}
-.main #settings .themes ul li {
-  display: inline-block;
-  margin: 15px;
-}
-.main #settings .themes .button_theme {
-  width: max-content;
-  padding: 10px;
-  border-radius: 1vmin;
-  border: none;
-  outline: none;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  transition: 1s;
-}
-.main #settings .themes .button_theme.dark {
-  background-color: black;
-  color: white;
-}
-.main #settings .themes .button_theme.dark:hover {
-  background-color: white;
-  color: black;
-}
-.main #settings .themes .button_theme.light {
-  background-color: white;
-  color: black;
-}
-.main #settings .themes .button_theme.light:hover {
-  background-color: black;
-  color: white;
-}
 
 .cell {
-  background-color: #444;
+  background-color: var(--cell-background);
   border-radius: 1vmin;
   opacity: 0.8;
 }
@@ -177,7 +148,7 @@ body {
   overflow: hidden;
   animation: FadeIn 3.1s ease-out;
   user-select: none;
-  background-color: rgb(117, 205, 227);
+  background-color: var(--cloud-bg);
 }
 @keyframes FadeIn {
   from {
@@ -206,7 +177,7 @@ body {
 #Clouds .Cloud {
   pointer-events: none; /* Облака не будут реагировать на события мыши */
   position: absolute;
-  background-image: url("./images/cloud.svg");
+  background-image: var(--background-cloud);
   width: 100%;
   background-repeat: no-repeat;
   background-size: auto 100%;
@@ -224,7 +195,7 @@ body {
   z-index: 4;
 }
 #Clouds .Cloud .Background {
-  background-image: url("./images/cloud.svg");
+  background-image: var(--background-cloud);
   height: 9.0909090909%;
   min-height: 8px;
   animation-duration: 204s;
@@ -366,7 +337,6 @@ body {
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0);
-  border: 2px solid red;
   cursor: pointer;
 }
 
