@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./style.css" />
+		<script src="./script.js" type="module"></script>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="./style.css" />
-	<script src="./script.js" type="module"></script>
+		<title>2048</title>
+	</head>
 
-	<title>2048</title>
-</head>
-
-<body>
-	<div id="Clouds">
-		<div id="stars-background"></div>
-	</div>
-	<div class="main">
-		<div id="sun-container">
-			<div id="sun-interaction-area"></div>
+	<body>
+		<div id="Clouds">
+			<div id="stars-background"></div>
 		</div>
-		<div class="game-container">
-			<div id="game-board"></div>
-		</div>
-		<div id="settings">
-			<h1>Настройки игры</h1>
-			<button id="clearLocalStorageBtn">Clear</button>
-			<button id="settings-restart">Начать заново</button>
-			<div id="score-container">Score: <span id="score">0</span></div>
-			<div id="leaderboard">
-				<h2>Таблица лидеров</h2>
-				<ul id="scores-list"></ul>
+		<div class="main">
+			<div id="sun-container">
+				<div id="sun-interaction-area"></div>
+			</div>
+			<div class="game-container">
+				<div id="game-board"></div>
+			</div>
+			<div id="settings">
+				<h1>Настройки игры</h1>
+				<button id="clearLocalStorageBtn">Clear</button>
+				<button id="settings-restart">Начать заново</button>
+				<div id="score-container">Score: <span id="score">0</span></div>
+				<div id="leaderboard">
+					<h2>Таблица лидеров</h2>
+					<ul id="scores-list"></ul>
+				</div>
 			</div>
 		</div>
-	</div>
-	<template id="popup-template">
-		<div class="popup">
-			<p id="popup-message">Конец игры</p>
-			<p>Вы хотите начать заново?</p>
-			<input type="text" id="player-name" placeholder="Введите ваше имя  (max 10 символов)" maxlength="10" />
-			<button id="save-score">Сохранить результат</button>
-			<button id="restart">Начать заново</button>
-			<button id="close">Закрыть</button>
-		</div>
-	</template>
-	<template id="modal-template">
-		<div class="modal" id="confirmModal">
-			<div class="modal-content">
-				<p id="confirmModalText">
-					Вы уверены, что хотите очистить таблицу лидеров? Это действие
-					необратимо."
-				</p>
-				<button id="confirmButton">ОК</button>
-				<button id="cancelButton">Отмена</button>
+		<template id="popup-template">
+			<div class="popup">
+				<p id="popup-message">Конец игры</p>
+				<p>Вы хотите начать заново?</p>
+				<input
+					type="text"
+					id="player-name"
+					placeholder="Введите ваше имя  (max 10 символов)"
+					maxlength="10"
+				/>
+				<button id="save-score">Сохранить результат</button>
+				<button id="restart">Начать заново</button>
+				<button id="close">Закрыть</button>
 			</div>
-		</div>
-	</template>
-</body>
-
+		</template>
+		<template id="modal-template">
+			<div class="modal" id="confirmModal">
+				<div class="modal-content">
+					<p id="confirmModalText">
+						Вы уверены, что хотите очистить таблицу лидеров? Это действие
+						необратимо."
+					</p>
+					<button id="confirmButton">ОК</button>
+					<button id="cancelButton">Отмена</button>
+				</div>
+			</div>
+		</template>
+	</body>
 </html>

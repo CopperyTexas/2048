@@ -350,13 +350,15 @@ body {
 @keyframes twinkle {
   0%, 100% {
     opacity: 1;
+    scale: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.1;
+    scale: 0.1;
   }
 }
 .stars {
-  animation: twinkle 5s infinite;
+  animation: twinkle 10s infinite;
   animation-delay: calc(-5s * var(--delay)); /* Случайная задержка для каждой звезды */
 }
 
