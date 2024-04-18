@@ -10,7 +10,7 @@
   --color-border: black;
   --background-cloud: url("./images/cloud-light.svg");
   --cell-background: #444;
-  --cloud-bg: rgb(117, 205, 227);
+  --cloud-bg: rgb(131, 206, 224);
 }
 
 .dark-theme {
@@ -187,12 +187,12 @@ body {
   animation-fill-mode: forwards;
   animation-timing-function: linear;
   animation-name: Float, FadeFloat;
-  z-index: 2;
+  z-index: 3;
 }
 #Clouds .Cloud .Foreground {
   height: 10%;
   min-height: 20px;
-  z-index: 4;
+  z-index: 5;
 }
 #Clouds .Cloud .Background {
   background-image: var(--background-cloud);
@@ -338,6 +338,13 @@ body {
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
+}
+
+.stars-background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -407,6 +407,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		cloudsContainer.appendChild(cloud)
 	}
 })
+
 fetch('./images/sun.svg')
 	.then(response => response.text())
 	.then(svg => {
@@ -425,3 +426,24 @@ fetch('./images/sun.svg')
 		// Добавление интерактивного элемента в контейнер, не в SVG
 		container.appendChild(interactionArea)
 	})
+
+const starsBg = document.getElementById('stars-background')
+
+for (let i = 0; i < 50; i++) {
+	const star = document.createElement('div')
+	star.classList.add('stars')
+	const size = Math.pow(Math.random(), 2) * 50 + 5 // размер от 5px до 55px с более мелкими звездами
+	const positionX = Math.random() * 100 // процентная позиция по X
+	const positionY = Math.random() * 100 // процентная позиция по Y
+
+	star.style.position = 'absolute'
+	star.style.left = `${positionX}%`
+	star.style.top = `${positionY}%`
+	star.style.width = `${size}px`
+	star.style.height = `${size}px`
+	star.style.backgroundImage = 'url("./images/star.svg")'
+	star.style.backgroundSize = 'contain'
+	star.style.backgroundRepeat = 'no-repeat'
+
+	starsBg.appendChild(star)
+}
