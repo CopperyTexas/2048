@@ -429,21 +429,39 @@ fetch('./images/sun.svg')
 
 const starsBg = document.getElementById('stars-background')
 
+const stars = []
+const maxAttempts = 30 // Максимальное количество попыток разместить звезду перед отказом
+
 for (let i = 0; i < 50; i++) {
-	const star = document.createElement('div')
-	star.classList.add('stars')
-	const size = Math.pow(Math.random(), 2) * 50 + 5 // размер от 5px до 55px с более мелкими звездами
-	const positionX = Math.random() * 100 // процентная позиция по X
-	const positionY = Math.random() * 100 // процентная позиция по Y
+	let overlaps
+	let attempts = 0
+	let positionX, positionY, size
+	do {
+		size = Math.pow(Math.random(), 2) * 30 + 5
+		positionX = Math.random() * 100
+		positionY = Math.random() * 100
+		overlaps = stars.some(star => {
+			const distance = Math.sqrt(
+				Math.pow(star.x - positionX, 2) + Math.pow(star.y - positionY, 2)
+			)
+			return distance < (star.size + size) / 2
+		})
+		attempts++
+	} while (overlaps && attempts < maxAttempts)
 
-	star.style.position = 'absolute'
-	star.style.left = `${positionX}%`
-	star.style.top = `${positionY}%`
-	star.style.width = `${size}px`
-	star.style.height = `${size}px`
-	star.style.backgroundImage = 'url("./images/star.svg")'
-	star.style.backgroundSize = 'contain'
-	star.style.backgroundRepeat = 'no-repeat'
+	if (!overlaps) {
+		const star = document.createElement('div')
+		star.classList.add('stars')
+		star.style.position = 'absolute'
+		star.style.left = `${positionX}%`
+		star.style.top = `${positionY}%`
+		star.style.width = `${size}px`
+		star.style.height = `${size}px`
+		star.style.backgroundImage = 'url("./images/star.svg")'
+		star.style.backgroundSize = 'contain'
+		star.style.backgroundRepeat = 'no-repeat'
 
-	starsBg.appendChild(star)
+		starsBg.appendChild(star)
+		stars.push({ x: positionX, y: positionY, size: size })
+	}
 }
