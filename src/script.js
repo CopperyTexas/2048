@@ -437,14 +437,14 @@ for (let i = 0; i < 50; i++) {
 	let attempts = 0
 	let positionX, positionY, size
 	do {
-		size = Math.pow(Math.random(), 2) * 30 + 5
-		positionX = Math.random() * 100
-		positionY = Math.random() * 100
+		size = Math.pow(Math.random(), 2) * 30 + 5 // размер звезды от 5px до 55px
+		positionX = Math.random() * 100 // процентная позиция по X
+		positionY = Math.random() * 100 // процентная позиция по Y
 		overlaps = stars.some(star => {
 			const distance = Math.sqrt(
 				Math.pow(star.x - positionX, 2) + Math.pow(star.y - positionY, 2)
 			)
-			return distance < (star.size + size) / 2
+			return distance < (star.size + size) / 2 + 1 // Добавляем небольшой отступ для более естественного размещения
 		})
 		attempts++
 	} while (overlaps && attempts < maxAttempts)
@@ -460,6 +460,7 @@ for (let i = 0; i < 50; i++) {
 		star.style.backgroundImage = 'url("./images/star.svg")'
 		star.style.backgroundSize = 'contain'
 		star.style.backgroundRepeat = 'no-repeat'
+		star.style.setProperty('--delay', Math.random().toString()) // Устанавливаем случайную задержку анимации
 
 		starsBg.appendChild(star)
 		stars.push({ x: positionX, y: positionY, size: size })

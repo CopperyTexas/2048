@@ -347,4 +347,17 @@ body {
   z-index: 2;
 }
 
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+.stars {
+  animation: twinkle 5s infinite;
+  animation-delay: calc(-5s * var(--delay)); /* Случайная задержка для каждой звезды */
+}
+
 /*# sourceMappingURL=style.css.map */
