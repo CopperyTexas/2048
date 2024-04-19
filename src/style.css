@@ -362,4 +362,39 @@ body {
   animation-delay: calc(-5s * var(--delay)); /* Случайная задержка для каждой звезды */
 }
 
+#clearLocalStorageBtn {
+  background-image: url(./images/clear.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 2px solid black;
+  width: 100px;
+  height: 100px;
+  border-radius: 1vmin;
+  display: inline-block;
+  transition: box-shadow 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+#clearLocalStorageBtn :hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px); /* Сдвиг вверх */
+}
+
+#settings-restart {
+  background-image: url(./images/repeat.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+#settings-restart:hover {
+  transform: scale(1.2) rotate(90deg);
+}
+
 /*# sourceMappingURL=style.css.map */

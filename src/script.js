@@ -437,7 +437,7 @@ for (let i = 0; i < 50; i++) {
 	let attempts = 0
 	let positionX, positionY, size
 	do {
-		size = Math.pow(Math.random(), 2) * 30 + 5 // размер звезды от 5px до 55px
+		size = Math.pow(Math.random(), 2) * 30 + 10 // размер звезды от 5px до 55px
 		positionX = Math.random() * 100 // процентная позиция по X
 		positionY = Math.random() * 100 // процентная позиция по Y
 		overlaps = stars.some(star => {
