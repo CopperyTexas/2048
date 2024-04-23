@@ -10,6 +10,7 @@
 	--background-cloud: url('./images/cloud-light.svg');
 	--cell-background: #444;
 	--cloud-bg: rgb(131, 206, 224);
+	--stars-vision: none;
 }
 
 // Переменные для темной темы
@@ -19,6 +20,8 @@
 	--background-cloud: url('./images/cloud-dark.svg');
 	--cloud-bg: rgb(44, 62, 80);
 	--cell-background: #cccaca;
+
+	--stars-vision: inline-block;
 }
 
 body {
@@ -268,13 +271,14 @@ $height: 10%;
 }
 
 .stars {
+	display: var(--stars-vision);
 	animation: twinkle 10s infinite;
 	animation-delay: calc(
 		-5s * var(--delay)
 	); /* Случайная задержка для каждой звезды */
 }
 #clearLocalStorageBtn {
-	background-image: url(./images/clear.png);
+	background-image: url(./images/clear.svg);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
