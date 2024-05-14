@@ -11,6 +11,9 @@
 	--cell-background: #444;
 	--cloud-bg: rgb(131, 206, 224);
 	--stars-vision: none;
+	--popup-bg: white;
+	--popup-text: black;
+	--button-bg: rgb(255, 255, 255);
 }
 
 // Переменные для темной темы
@@ -20,7 +23,9 @@
 	--background-cloud: url('./images/cloud-dark.svg');
 	--cloud-bg: rgb(44, 62, 80);
 	--cell-background: #cccaca;
-
+	--popup-bg: black;
+	--popup-text: white;
+	--button-bg: #bdc3c7;
 	--stars-vision: inline-block;
 }
 
@@ -135,7 +140,8 @@ body {
 }
 
 .popup {
-	background-color: white;
+	background-color: var(--cloud-bg);
+	color: var(--popup-text);
 	padding: 20px;
 	border-radius: 5px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -144,12 +150,14 @@ body {
 
 .modal {
 	position: absolute;
-	background-color: white;
+	background-color: var(--cloud-bg);
+	color: var(--popup-text);
 	padding: 20px;
 	border-radius: 5px;
 	border: 1px solid #ccc;
 	z-index: 1000; // Убедитесь, что модальное окно находится поверх других элементов
 }
+
 $duration: 120s;
 $height: 10%;
 #Clouds {
@@ -305,6 +313,12 @@ $height: 10%;
 #clearLocalStorageBtn:hover {
 	transform: scale(1.3);
 }
+#clearLocalStorageBtn:focus-visible {
+	transform: scale(1.3);
+}
+#clearLocalStorageBtn:focus {
+	outline: none;
+}
 
 #settings-restart {
 	background-image: url(./images/repeat.svg);
@@ -322,6 +336,12 @@ $height: 10%;
 
 #settings-restart:hover {
 	transform: scale(1.3);
+}
+#settings-restart:focus-visible {
+	transform: scale(1.3);
+}
+#settings-restart:focus {
+	outline: none;
 }
 #score-container {
 	font-size: 2rem;
@@ -343,4 +363,40 @@ $height: 10%;
 .settings_box {
 	display: flex;
 	flex-direction: column;
+}
+
+#popup-message {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.button {
+	width: max-content;
+	padding: 10px;
+	border: 2px solid black;
+	transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+	border-radius: 1vmin;
+	cursor: pointer;
+	background-color: var(--button-bg);
+	margin: 5px;
+}
+.button:focus {
+	outline: none;
+}
+.button:focus-visible {
+	transform: scale(1.2);
+}
+.button:hover {
+	transform: scale(1.2);
+}
+
+#player-name {
+	border: 2px solid black;
+	border-radius: 1vmin;
+	padding: 5px;
+	width: 250px;
+	background-color: var(--button-bg);
+}
+#confirmModalText {
+	margin-bottom: 10px;
 }
