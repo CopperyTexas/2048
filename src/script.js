@@ -408,25 +408,65 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 })
 
-fetch('./images/sun.svg')
-	.then(response => response.text())
-	.then(svg => {
-		const container = document.getElementById('sun-container')
-		container.innerHTML = svg
+document.addEventListener('DOMContentLoaded', () => {
+	// Load Sun SVG
+	fetch('./images/sun.svg')
+		.then(response => response.text())
+		.then(svg => {
+			const sunContainer = document.getElementById('sun-container')
+			if (sunContainer) {
+				sunContainer.innerHTML = svg
 
-		// Создание и стилизация внутреннего контейнера для интеракции
-		const interactionArea = document.createElement('div')
-		interactionArea.classList.add('sun-interaction-area')
-
-		// Добавление обработчиков событий
-		interactionArea.addEventListener('click', () => {
-			document.body.classList.toggle('dark-theme')
+				const interactionArea = document.createElement('div')
+				interactionArea.classList.add('sun-interaction-area')
+				interactionArea.addEventListener('click', () => {
+					document.body.classList.toggle('dark-theme')
+					toggleSunMoon()
+				})
+				sunContainer.appendChild(interactionArea)
+			} else {
+				console.error('Sun container not found')
+			}
 		})
 
-		// Добавление интерактивного элемента в контейнер, не в SVG
-		container.appendChild(interactionArea)
-	})
+	// Load Moon SVG
+	fetch('./images/moon.svg')
+		.then(response => response.text())
+		.then(svg => {
+			const moonContainer = document.getElementById('moon-container')
+			if (moonContainer) {
+				moonContainer.innerHTML = svg
 
+				const interactionArea = document.createElement('div')
+				interactionArea.classList.add('moon-interaction-area')
+				interactionArea.addEventListener('click', () => {
+					document.body.classList.toggle('dark-theme')
+					toggleSunMoon()
+				})
+				moonContainer.appendChild(interactionArea)
+			} else {
+				console.error('Moon container not found')
+			}
+		})
+
+	function toggleSunMoon() {
+		const sunContainer = document.getElementById('sun-container')
+		const moonContainer = document.getElementById('moon-container')
+
+		if (!sunContainer || !moonContainer) {
+			console.error('One or both containers are missing')
+			return
+		}
+
+		if (sunContainer.style.opacity === '0') {
+			sunContainer.style.opacity = '1'
+			moonContainer.style.opacity = '0'
+		} else {
+			sunContainer.style.opacity = '0'
+			moonContainer.style.opacity = '1'
+		}
+	}
+})
 const starsBg = document.getElementById('stars-background')
 
 const stars = []

@@ -338,18 +338,28 @@ body {
   height: 7.8409090909%;
 }
 
-#sun-container {
-  transition: transform 0.3s ease;
+#sun-container,
+#moon-container {
+  position: relative;
   width: 200px;
   height: 200px;
-  position: relative;
   grid-column: 2/3;
   grid-row: 1/2;
   margin-left: auto;
   z-index: 2;
+  transition: opacity 2s ease-in-out;
 }
 
-.sun-interaction-area {
+#sun-container {
+  opacity: 1;
+}
+
+#moon-container {
+  opacity: 0;
+}
+
+.sun-interaction-area,
+.moon-interaction-area {
   position: absolute;
   left: 50%;
   top: 50%;
