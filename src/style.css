@@ -508,4 +508,63 @@ body {
   margin-bottom: 10px;
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.star {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes swing {
+  0%, 100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+.moonlight {
+  transform-origin: 30% 30%; /* Точка вращения у основания полумесяца, ближе к звездам */
+  animation: swing 6s ease-in-out infinite;
+}
+
+.hidden {
+  display: none;
+}
+
+.welcome-message {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#focus-circle {
+  position: absolute;
+  border: 3px solid #f8e868;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+  pointer-events: none;
+  background-color: rgba(255, 255, 255, 0.1); /* Добавлено для фокусировки */
+}
+
+#explanation-box {
+  position: absolute;
+  bottom: 20px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#next-btn,
+#skip-btn {
+  margin-top: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */
